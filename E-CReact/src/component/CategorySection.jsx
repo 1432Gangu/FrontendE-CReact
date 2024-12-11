@@ -1,20 +1,20 @@
 import React from 'react';
-import Image1 from '../assets/Images/Image1.png';
-import Image2 from '../assets/Images/Image2.png';
-import Image3 from '../assets/Images/Image3.jpg';
+import New10 from '../assets/Images/New10.png';
+import New13 from '../assets/Images/New13.png';
+import New15 from '../assets/Images/New15.png';
 
 const categories = [
   {
     title: "Chicken",
-    imageUrl: Image1,
+    imageUrl: New10,
   },
   {
     title: "Mutton",
-    imageUrl: Image2
+    imageUrl: New13
   },
   {
-    title: "Fish",
-    imageUrl: Image3,
+    title: "Biriyani",
+    imageUrl: New15,
   },
 ];
 

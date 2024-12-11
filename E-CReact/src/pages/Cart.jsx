@@ -59,7 +59,7 @@ const Cart = () => {
                 ))}
               </div>
             </div>
-
+            
             {/* CART TOTAL section */}
             <div className='md:w-1/3 bg-white p-6 rounded-lg shadow-md border'>
               <h3 className='text-sm font-semibold mb-5'>CART TOTAL</h3>
@@ -82,7 +82,7 @@ const Cart = () => {
                 <span>${cart.totalPrice.toFixed(2)}</span>
               </div>
               <button className='w-full bg-red-600 text-white py-2 hover:bg-red-800'>
-                Proceed to checkout
+                Proceed to Order
               </button>
             </div>
           </div>

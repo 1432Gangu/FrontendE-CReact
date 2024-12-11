@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { categories, mocData } from '../assets/mocData';
-import Image22 from '../assets/Images/Image22.jpg';
+import New from '../assets/Images/New.webp';
 import InfoSection from '../component/InfoSection';
 import CategorySection from '../component/CategorySection';
 import { setProducts } from '../redux/productSlice';
@@ -34,11 +34,11 @@ function Home() {
 
         {/* Hero Image Section */}
         <div className="w-full md:w-9/12 mt-8 md:mt-0 h-96 relative">
-          <img src={Image22} alt="Hero Image" className="w-full h-full object-cover" />
+          <img src={New} alt="Hero Image" className="w-full h-full object-cover" />
           <div className="absolute top-16 left-8">
-            <p className="text-gray-600 mb-4">E Shop</p>
-            <h2 className="text-3xl font-bold" >WELCOME TO E-SHOP</h2>
-            <p className="text-xl mt-2.5 font-bold text-gray-800">MILLION+ ITEMS</p>
+            <p className="text-5xl font-bold">FOOD ORDER APP</p>
+            <h2 className="text-4xl font-bold" >PLACE YOUR ORDER WHAT YOU WANT</h2>
+            <p className="text-3xl font-bold">MILLION+ ITEMS</p>
             <button className="bg-red-600 px-8 py-2 text-white mt-4 hover:bg-red-700 transform transition-transform duration-300 hover:scale-105">
               Shop Now
             </button>
