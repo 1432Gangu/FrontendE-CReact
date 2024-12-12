@@ -36,8 +36,8 @@ function Home() {
         <div className="w-full md:w-9/12 mt-8 md:mt-0 h-96 relative">
           <img src={New} alt="Hero Image" className="w-full h-full object-cover" />
           <div className="absolute top-16 left-8">
-            <p className="text-5xl font-bold">FOOD ORDER APP</p>
-            <h2 className="text-4xl font-bold" >PLACE YOUR ORDER WHAT YOU WANT</h2>
+            <p className="text-5xl font-bold text-white">FOOD ORDER APP</p>
+            <h2 className="text-4xl font-bold text-red" >PLACE YOUR ORDER WHAT YOU WANT</h2>
             <p className="text-3xl font-bold">MILLION+ ITEMS</p>
             <button className="bg-red-600 px-8 py-2 text-white mt-4 hover:bg-red-700 transform transition-transform duration-300 hover:scale-105">
               Shop Now
