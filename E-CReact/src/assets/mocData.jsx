@@ -8,6 +8,7 @@ import Neww from '../assets/Images/Neww.png';
 import New6 from '../assets/Images/New6.jpg';
 import New5 from '../assets/Images/New5.png';
 import New16 from '../assets/Images/New16.png';
+import Adminpage from '../assets/Images/Adminpage.jpg'
 
 export const categories =[
     "Pizza",
@@ -34,7 +35,7 @@ export const mocData = [
         id:3,
         image: New3,
         name: "MUSHRUM",
-        price: 111111.00
+        price: 1111.00
     },
     {
         id:4,

@@ -2,56 +2,74 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import emptyCartImage from '../assets/Images/emtycart1.gif';
 import { FaTrashAlt } from 'react-icons/fa';
-// import Modal from '../component/Modal';
+// import Modal from '../component/Modal';  // Assuming you have a modal component
+// import OrderConfirmationModal from '../components/OrderConfirmationModal'; // Replace with your modal
+
+import OrderConfirmationModal from '../component/OrderConfirmationModal';
+import PaymentMethodModal from '../component/PaymentMethodModal';
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [address, setAddress] = useState('Main Street thilai Nagara, 0012');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState(null);
+
+  const handleProceedToOrder = () => {
+    setIsModalOpen(true); 
+    setIsPaymentModalOpen(true); 
+  };
+
+  const handlePayment = (method) => {
+    setPaymentMethod(method);
+    setIsPaymentModalOpen(false); 
+    alert(`You selected ${method} as the payment method.`);
+    
+  };
 
   return (
-    <div className='container mx-auto py-8 min-h-96 px-4 md:px-16 lg:px-24'>
+    <div className="container mx-auto py-8 min-h-96 px-4 md:px-16 lg:px-24">
       {cart.products.length > 0 ? (
         <div>
-          <h3 className='text-2xl font-semibold mb-4'>SHOPPING CART</h3>
-          <div className='flex flex-col md:flex-row justify-between space-x-10 mt-8'>
+          <h3 className="text-2xl font-semibold mb-4">SHOPPING CART</h3>
+          <div className="flex flex-col md:flex-row justify-between space-x-10 mt-8">
             {/* PRODUCT LIST section */}
-            <div className='md:w-2/3'>
-              <div className='flex justify-between border-b items-center mb-4 text-xs font-bold'>
+            <div className="md:w-2/3">
+              <div className="flex justify-between border-b items-center mb-4 text-xs font-bold">
                 <p>PRODUCTS</p>
-                <div className='flex space-x-11'>
+                <div className="flex space-x-11">
                   <p>PRICE</p>
                   <p>QUANTITY</p>
                   <p>SUBTOTAL</p>
-                  <p>REMOVE</p>                 
+                  <p>REMOVE</p>
                 </div>
               </div>
               <div>
-                {/* This is where you would typically map over your product items */}
+                {/* Mapping through products */}
                 {cart.products.map((product) => (
                   <div
                     key={product.id}
-                    className='flex items-center justify-between p-3 border-b'
+                    className="flex items-center justify-between p-3 border-b"
                   >
-                    <div className='md:flex items-center space-x-4'>
+                    <div className="md:flex items-center space-x-4">
                       <img
                         src={product.image}
                         alt={product.name}
-                        className='w-16 h-16 object-contain rounded'
+                        className="w-16 h-16 object-contain rounded"
                       />
-                      <div className='flex-1 ml-4'>
-                        <h3 className='text-lg font-semibold'>{product.name}</h3>
+                      <div className="flex-1 ml-4">
+                        <h3 className="text-lg font-semibold">{product.name}</h3>
                       </div>
                     </div>
-                    <div className='flex space-x-12 items-center'>
+                    <div className="flex space-x-12 items-center">
                       <p>${product.price}</p>
-                      <div className='flex items-center justify-center border'>
-                        <button className='text-xl font-bold px-1.5 border'>-</button>
-                        <p className='text-xl px-2'>{product.quantity}</p>
-                        <button className='text-xl px-1 border'>+</button>
+                      <div className="flex items-center justify-center border">
+                        <button className="text-xl font-bold px-1.5 border">-</button>
+                        <p className="text-xl px-2">{product.quantity}</p>
+                        <button className="text-xl px-1 border">+</button>
                       </div>
                       <p>${(product.quantity * product.price).toFixed(2)}</p>
-                      <button className='text-red-500 hover:text-red-700'>
+                      <button className="text-red-500 hover:text-red-700">
                         <FaTrashAlt />
                       </button>
                     </div>
@@ -59,48 +77,59 @@ const Cart = () => {
                 ))}
               </div>
             </div>
-            
+
             {/* CART TOTAL section */}
-            <div className='md:w-1/3 bg-white p-6 rounded-lg shadow-md border'>
-              <h3 className='text-sm font-semibold mb-5'>CART TOTAL</h3>
-              <div className='flex justify-between mb-5 border-b pb-1'>
-                <span className='text-sm'>Total Items</span>
+            <div className="md:w-1/3 bg-white p-6 rounded-lg shadow-md border">
+              <h3 className="text-sm font-semibold mb-5 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text">
+                CART TOTAL
+              </h3>
+
+              <div className="flex justify-between mb-5 border-b pb-1">
+                <span className="text-sm">Total Items</span>
                 <span>{cart.totalQuantity}</span>
               </div>
-              <div className='mb-4 border-b pb-2'>
+              <div className="mb-4 border-b pb-2">
                 <p>Shipping</p>
-                <p className='ml-2'>Shipping to:</p>
-                <span className='text-xs font-bold'>{address}</span>
-                <button
-                  className='text-blue-500 hover:underline mt-1 ml-2'
-                  onClick={() => setIsModalOpen(true)}>
-                  Change Address
-                </button>
+                <p className="ml-2">Shipping to:</p>
+                <span className="text-xs font-bold">{address}</span>
+
               </div>
-              <div className='flex justify-between mb-4'>
+              <div className="flex justify-between mb-4">
                 <span>Total Price</span>
-                <span>${cart.totalPrice.toFixed(2)}</span>
+                <span className="text-green-500 font-semibold">${cart.totalPrice.toFixed(2)}</span>
               </div>
-              <button className='w-full bg-red-600 text-white py-2 hover:bg-red-800'>
+
+              <button
+                className="w-full bg-red-600 text-white py-2 hover:bg-red-800"
+                onClick={handleProceedToOrder} 
+              >
                 Proceed to Order
               </button>
             </div>
           </div>
-          {/* <Modal
+
+          
+          <OrderConfirmationModal
             isModalOpen={isModalOpen}
             setIsModalOpen={setIsModalOpen}
-          >
-            <ChangeAddress />
-          </Modal> */}
+            cart={cart}
+            address={address}
+          />
+
+          
+          <PaymentMethodModal
+            isPaymentModalOpen={isPaymentModalOpen}
+            setIsPaymentModalOpen={setIsPaymentModalOpen}
+            handlePayment={handlePayment}
+          />
         </div>
       ) : (
-        <div className='flex justify-center'>
-          <img src={emptyCartImage} alt='Empty Cart' className='h-96' />
+        <div className="flex justify-center">
+          <img src={emptyCartImage} alt="Empty Cart" className="h-96" />
         </div>
       )}
     </div>
   );
 };
-
 
 export default Cart;

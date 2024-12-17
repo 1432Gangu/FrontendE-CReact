@@ -1,33 +1,37 @@
 import React from 'react';
-import { GiMeatCleaver,GiChicken,GiChickenLeg,GiChickenOven,GiRoastChicken    } from 'react-icons/gi';
+import { MdOutlineDeliveryDining } from "react-icons/md";
+import { FcCustomerSupport } from "react-icons/fc";
+import { MdNoMeals } from "react-icons/md";
+import { RiSecurePaymentFill } from "react-icons/ri";
+import { GiTakeMyMoney } from "react-icons/gi";
 
 const InfoSection = () => {
     const infoItems = [
         {
-            icon: <GiMeatCleaver className="text-3xl text-red-600" />,
-            title: "Cuts your wish",
-            description: "Get your orders delivered with no cost",
+            icon: <MdOutlineDeliveryDining className="text-3xl text-red-600" />,
+            title: "Cuts of Your Choice",
+            description: "Order precisely what you love, delivered for free.",
         },
         {
-            icon: <GiChicken className="text-3xl text-red-600" />,
-            title: "Support 24/7",
-            description: "We are here to assist you anytime",
+            icon: <FcCustomerSupport className="text-3xl text-red-600" />,
+            title: "24/7 Customer Support",
+            description: "We are always here to help you.",
         },
         {
-            icon: <GiChickenLeg  className="text-3xl text-red-600" />,
-            title: "100% Money Back",
-            description: "Full refund if you're not satisfied",
+            icon: <MdNoMeals className="text-3xl text-red-600" />,
+            title: "100% Satisfaction Guarantee",
+            description: "Enjoy your meals or get your money back.",
         },
         {
-            icon: <GiChickenOven  className="text-3xl text-red-600" />,
-            title: "Payment Secure",
-            description: "Your payment is secure with us",
+            icon: <RiSecurePaymentFill className="text-3xl text-red-600" />,
+            title: "Secure Payment",
+            description: "Your payments are safe and protected.",
         },
         {
-            icon: <GiRoastChicken  className="text-3xl text-red-600" />,
-            title: "Best Discounts",
-            description: "Enjoy the best prices on our products",
-        }
+            icon: <GiTakeMyMoney className="text-3xl text-red-600" />,
+            title: "Exclusive Discounts",
+            description: "Save big with the best offers on delicious food.",
+        },
     ];
 
     return (
