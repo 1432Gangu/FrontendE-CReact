@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:Kiruthiga@123@localhost:3306/food_app"
+}
+
+enum Role {
+  SUPER_ADMIN 
+  RESTAURANT_ADMIN 
+  RESTAURANT_MANAGER 
+  CUSTOMER 
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  username    String   @unique
+  password    String
+  role        Role     // Removed the roleId field
+  createdAt   DateTime @default(now())
+  restaurantId Int?
+  restaurant  RestaurantDetails? @relation(fields: [restaurantId], references: [id])
+}
+
+model RestaurantDetails {
+  id            Int      @id @default(autoincrement())
+  name          String   @unique
+  address       String
+  contactNumber String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  menuItems     Menu[] 
+  orders        Order[] 
+  users         User[] 
+}
+
+model Customer {
+  id            Int      @id @default(autoincrement())
+  name          String
+  email         String   @unique
+  contactNumber String
+  registeredAt  DateTime @default(now())
+  orders        Order[] 
+  cartItems     Cart[] 
+  createdAt     DateTime @default(now())
+  updateAt      DateTime @default(now())
+}
+
+model Order {
+  id          Int      @id @default(autoincrement())
+  totalAmount Float
+  orderDate   DateTime @default(now())
+
+  customerId  Int
+  customer    Customer @relation(fields: [customerId], references: [id])
+
+  restaurantId Int
+  restaurant   RestaurantDetails @relation(fields: [restaurantId], references: [id])
+
+  menuItems    Menu[] 
+  createdAt    DateTime @default(now())
+  updateAt     DateTime @default(now())
+}
+
+model Menu {
+  id           Int     @id @default(autoincrement())
+  dishName     String
+  price        Float
+  isAvailable  Boolean @default(true)
+  restaurantId Int
+  restaurant   RestaurantDetails @relation(fields: [restaurantId], references: [id])
+
+  orders       Order[] 
+  createdAt    DateTime @default(now())
+  updateAt     DateTime @default(now())
+  Cart         Cart[]
+}
+
+model Cart {
+  id         Int @id @default(autoincrement())
+  customerId Int
+  menuItemId Int
+  quantity   Int @default(1)
+
+  customer   Customer @relation(fields: [customerId], references: [id])
+  menuItem   Menu     @relation(fields: [menuItemId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([customerId, menuItemId]) 
+}
